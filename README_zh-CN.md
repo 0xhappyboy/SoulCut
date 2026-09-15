@@ -53,20 +53,32 @@
 
 > 💡 **提示：** 自动更新检测由安装包文件名驱动，请务必下载与你的平台完全匹配的安装包。Windows 请下载 `.msi`，macOS 请下载 `.dmg`，Linux 请下载 `.deb`。
 
-## 🖼️ 主题
+## 🖼️ 演示
 
 <table>
   <tr>
-    <td align="left">
-    <h4>白色</h4>
+    <td align="center" width="50%">
+      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/artistic-font-overlay-system.png" width="100%">
+      <br>
+      <b>艺术字体覆盖物系统</b>
     </td>
-    <td align="left">
-    <h4>黑夜</h4>
+    <td align="center" width="50%">
+      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/multi-camera%20rendering.png" width="100%">
+      <br>
+      <b>多机位渲染</b>
     </td>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/theme_demo_light.png" width="100%"></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/theme_demo_dark.png" width="100%"></td>
+    <td align="center" width="50%">
+      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/text-to-3d.png" width="100%">
+      <br>
+      <b>文生 3D 场景</b>
+    </td>
+    <td align="center" width="50%">
+      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/text-to-audio.png" width="100%">
+      <br>
+      <b>文生音频</b>
+    </td>
   </tr>
 </table>
 

@@ -53,20 +53,32 @@ Get the latest version from the [Releases page](https://github.com/0xhappyboy/So
 
 > 💡 **Note:** Auto-update detection relies on the installer filename. Please download the package that exactly matches your platform. Windows → `.msi`, macOS → `.dmg`, Linux → `.deb`.
 
-## 🖼️ Theme
+## 🖼️ Demo
 
 <table>
   <tr>
-    <td align="left">
-    <h4>Light</h4>
+    <td align="center" width="50%">
+      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/artistic-font-overlay-system.png" width="100%">
+      <br>
+      <b>Artistic Font Overlay System</b>
     </td>
-    <td align="left">
-    <h4>Dark</h4>
+    <td align="center" width="50%">
+      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/multi-camera%20rendering.png" width="100%">
+      <br>
+      <b>Multi-Camera Rendering</b>
     </td>
   </tr>
   <tr>
-    <td align="center"><img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/theme_demo_light.png" width="100%"></td>
-    <td align="center"><img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/theme_demo_dark.png" width="100%"></td>
+    <td align="center" width="50%">
+      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/text-to-3d.png" width="100%">
+      <br>
+      <b>Text-to-3D</b>
+    </td>
+    <td align="center" width="50%">
+      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/text-to-audio.png" width="100%">
+      <br>
+      <b>Text-to-Audio</b>
+    </td>
   </tr>
 </table>
 
