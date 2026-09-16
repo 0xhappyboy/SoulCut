@@ -37,19 +37,19 @@ Get the latest version from the [Releases page](https://github.com/0xhappyboy/So
 
 **Windows**
 
-- [SoulCut_windows_x86_64.msi](https://github.com/0xhappyboy/SoulCut/releases/latest)
-- [SoulCut_windows_x86_64.exe](https://github.com/0xhappyboy/SoulCut/releases/latest)
+- [SoulCut_windows_x86_64.msi](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_windows_x86_64.msi)
+- [SoulCut_windows_x86_64.exe](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_windows_x86_64.exe)
 
 **macOS**
 
-- [SoulCut_macos_x86_64.dmg](https://github.com/0xhappyboy/SoulCut/releases/latest)
-- [SoulCut_macos_aarch64.dmg](https://github.com/0xhappyboy/SoulCut/releases/latest)
+- [SoulCut_macos_x86_64.dmg](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_macos_x86_64.dmg)
+- [SoulCut_macos_aarch64.dmg](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_macos_aarch64.dmg)
 
 **Linux**
 
-- [SoulCut_linux_x86_64.AppImage](https://github.com/0xhappyboy/SoulCut/releases/latest)
-- [SoulCut_linux_x86_64.deb](https://github.com/0xhappyboy/SoulCut/releases/latest)
-- [SoulCut_linux_x86_64.rpm](https://github.com/0xhappyboy/SoulCut/releases/latest)
+- [SoulCut_linux_x86_64.AppImage](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_linux_x86_64.AppImage)
+- [SoulCut_linux_x86_64.deb](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_linux_x86_64.deb)
+- [SoulCut_linux_x86_64.rpm](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_linux_x86_64.rpm)
 
 > 💡 **Note:** Auto-update detection relies on the installer filename. Please download the package that exactly matches your platform. Windows → `.msi`, macOS → `.dmg`, Linux → `.deb`.
 
