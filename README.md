@@ -12,7 +12,7 @@ An open-source video editing software that breathes soul into every frame.
 <p align="center">
     <a href="https://github.com/0xhappyboy/SoulCut/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-AGPL3.0-d1d1f6.svg?style=flat&labelColor=1C2C2E&color=BEC5C9&logo=googledocs&label=license&logoColor=BEC5C9" alt="License"></a>
     <a href="https://github.com/0xhappyboy/SoulCut/stargazers"><img src="https://img.shields.io/github/stars/0xhappyboy/SoulCut.svg?style=flat&labelColor=1C2C2E&color=FFD700&logo=github&logoColor=white&label=stars" alt="GitHub stars"></a>
-    <a href="https://github.com/0xhappyboy/SoulCut/issues"><img src="https://img.shields.io/github/issues/HippoxHQ/ hippoxOS.svg?style=flat&labelColor=1C2C2E&color=FF6B6B&logo=github&logoColor=white&label=issues" alt="GitHub issues"></a>
+    <a href="https://github.com/0xhappyboy/SoulCut/issues"><img src="https://img.shields.io/github/issues/0xhappyboy/SoulCut.svg?style=flat&labelColor=1C2C2E&color=FF6B6B&logo=github&logoColor=white&label=issues" alt="GitHub issues"></a>
     <a href="https://github.com/0xhappyboy/SoulCut/network/members"><img src="https://img.shields.io/github/forks/0xhappyboy/SoulCut.svg?style=flat&labelColor=1C2C2E&color=42A5F5&logo=github&logoColor=white&label=forks" alt="GitHub forks"></a>
     <a href="https://github.com/0xhappyboy/SoulCut/releases"><img src="https://img.shields.io/github/v/release/0xhappyboy/SoulCut.svg?style=flat&labelColor=1C2C2E&color=9C27B0&logo=github&logoColor=white&label=latest%20release" alt="GitHub release"></a>
 </p>
