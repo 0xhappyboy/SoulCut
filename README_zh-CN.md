@@ -58,26 +58,26 @@
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/artistic-font-overlay-system.png" width="100%">
+      https://github.com/user-attachments/assets/f7cb9dc8-9528-4a11-b910-bd9ca6c7f340
       <br>
-      <b>艺术字体覆盖物系统</b>
+      <b>多轨道编辑,多机位渲染</b>
     </td>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/multi-camera%20rendering.png" width="100%">
+      https://github.com/user-attachments/assets/cc9df193-5af6-4167-bc2f-69e3ec4a6735
       <br>
-      <b>多机位渲染</b>
+      <b>滤镜与特效</b>
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/text-to-3d.png" width="100%">
+      https://github.com/user-attachments/assets/6e6571d1-fdd3-465c-b7f3-5db31e72f4d2
       <br>
-      <b>文生 3D 场景</b>
+      <b>转场特效</b>
     </td>
     <td align="center" width="50%">
-      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/text-to-audio.png" width="100%">
+      https://github.com/user-attachments/assets/52fdca4b-77e8-4eb3-88f6-8170ad4f9674
       <br>
-      <b>文生音频</b>
+      <b>运镜效果</b>
     </td>
   </tr>
 </table>
