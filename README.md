@@ -55,32 +55,21 @@ Get the latest version from the [Releases page](https://github.com/0xhappyboy/So
 
 ## 🖼️ Demo
 
-<table>
-  <tr>
-    <td align="center" width="50%">
-      https://github.com/user-attachments/assets/f7cb9dc8-9528-4a11-b910-bd9ca6c7f340
-      <br>
-      <b>Multi-Track Editing</b>
-    </td>
-    <td align="center" width="50%">
-      https://github.com/user-attachments/assets/cc9df193-5af6-4167-bc2f-69e3ec4a6735
-      <br>
-      <b>Filters & Effects</b>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="50%">
-      https://github.com/user-attachments/assets/6e6571d1-fdd3-465c-b7f3-5db31e72f4d2
-      <br>
-      <b>Transitions</b>
-    </td>
-    <td align="center" width="50%">
-      https://github.com/user-attachments/assets/52fdca4b-77e8-4eb3-88f6-8170ad4f9674
-      <br>
-      <b>Camera Motion</b>
-    </td>
-  </tr>
-</table>
+### Multi-Track Editing
+
+https://github.com/user-attachments/assets/f7cb9dc8-9528-4a11-b910-bd9ca6c7f340
+
+### Filters & Effects
+
+https://github.com/user-attachments/assets/cc9df193-5af6-4167-bc2f-69e3ec4a6735
+
+### Transitions
+
+https://github.com/user-attachments/assets/6e6571d1-fdd3-465c-b7f3-5db31e72f4d2
+
+### Camera Motion
+
+https://github.com/user-attachments/assets/52fdca4b-77e8-4eb3-88f6-8170ad4f9674
 
 ## 🏛️ Ecosystem & Organization
 
