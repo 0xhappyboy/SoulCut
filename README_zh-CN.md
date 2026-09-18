@@ -15,6 +15,7 @@
   <a href="https://github.com/0xhappyboy/SoulCut/issues"><img src="https://img.shields.io/github/issues/0xhappyboy/SoulCut.svg?style=flat&labelColor=1C2C2E&color=FF6B6B&logo=github&logoColor=white&label=issues" alt="GitHub issues"></a>
   <a href="https://github.com/0xhappyboy/SoulCut/network/members"><img src="https://img.shields.io/github/forks/0xhappyboy/SoulCut.svg?style=flat&labelColor=1C2C2E&color=42A5F5&logo=github&logoColor=white&label=forks" alt="GitHub forks"></a>
   <a href="https://github.com/0xhappyboy/SoulCut/releases"><img src="https://img.shields.io/github/v/release/0xhappyboy/SoulCut.svg?style=flat&labelColor=1C2C2E&color=9C27B0&logo=github&logoColor=white&label=latest%20release" alt="GitHub release"></a>
+  <a href="https://github.com/0xhappyboy/SoulCut/releases"><img src="https://img.shields.io/github/downloads/0xhappyboy/SoulCut/total?style=flat&labelColor=1C2C2E&color=00C853&logo=github&logoColor=white&label=downloads" alt="GitHub downloads"></a>
   <a href="https://xinquji.com" target="_blank" rel="noopener noreferrer"><img src="https://xinquji.com/badge" alt="Featured on 新趣集" style="width:200px;height:54px;" width="200" height="54" /></a>
 </p>
 
