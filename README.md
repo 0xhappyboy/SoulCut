@@ -48,6 +48,10 @@ Get the latest version from the [Releases page](https://github.com/0xhappyboy/So
 
 ## 🖼️ Demo
 
+### LLM Control of Timelines
+
+<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/llm_alignment_track_blocks.gif" />
+
 ### Multi-Track Editing
 
 https://github.com/user-attachments/assets/f7cb9dc8-9528-4a11-b910-bd9ca6c7f340
