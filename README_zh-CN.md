@@ -38,21 +38,11 @@
 
 前往 [Releases 页面](https://github.com/0xhappyboy/SoulCut/releases/latest) 获取最新版本。
 
-**Windows**
-
-- [SoulCut_windows_x86_64.msi](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_windows_x86_64.msi)
-- [SoulCut_windows_x86_64.exe](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_windows_x86_64.exe)
-
-**macOS**
-
-- [SoulCut_macos_x86_64.dmg](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_macos_x86_64.dmg)
-- [SoulCut_macos_aarch64.dmg](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_macos_aarch64.dmg)
-
-**Linux**
-
-- [SoulCut_linux_x86_64.AppImage](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_linux_x86_64.AppImage)
-- [SoulCut_linux_x86_64.deb](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_linux_x86_64.deb)
-- [SoulCut_linux_x86_64.rpm](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_linux_x86_64.rpm)
+| 平台    | 下载                                                                                                                                                                                                                                                                                                                                                                            |
+| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Windows | [SoulCut_windows_x86_64.msi](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_windows_x86_64.msi) <br> [SoulCut_windows_x86_64.exe](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_windows_x86_64.exe)                                                                                                                            |
+| macOS   | [SoulCut_macos_x86_64.dmg](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_macos_x86_64.dmg) <br> [SoulCut_macos_aarch64.dmg](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_macos_aarch64.dmg)                                                                                                                                  |
+| Linux   | [SoulCut_linux_x86_64.AppImage](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_linux_x86_64.AppImage) <br> [SoulCut_linux_x86_64.deb](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_linux_x86_64.deb) <br> [SoulCut_linux_x86_64.rpm](https://github.com/0xhappyboy/SoulCut/releases/latest/download/SoulCut_linux_x86_64.rpm) |
 
 > 💡 **提示：** 自动更新检测由安装包文件名驱动，请务必下载与你的平台完全匹配的安装包。Windows 请下载 `.msi`，macOS 请下载 `.dmg`，Linux 请下载 `.deb`。
 
