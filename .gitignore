@@ -2,6 +2,8 @@
 /target
 /target-linux
 /product
+/db/mysql/data
+/db/redis/data
 
 # dependencies
 /node_modules

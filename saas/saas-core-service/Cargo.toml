@@ -1,0 +1,25 @@
+[package]
+name = "saas-core-service"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+axum = "0.8.9"
+sqlx = { version = "0.9.0", features = [
+    "runtime-tokio",
+    "mysql",
+    "macros",
+    "chrono",
+    "mysql-rsa",
+] }
+tokio = { version = "1.53.1", features = ["full"] }
+chrono = { version = "0.4", features = ["serde"] }
+serde = "1.0.229"
+serde_json = "1.0.151"
+url = "2.5.8"
+log = "0.4.34"
+env_logger = "0.11.11"
+jsonwebtoken = { version = "11.1.0", features = ["rust_crypto"] }
+bcrypt = "0.19.3"
+tower-http = { version = "0.7.1", features = ["cors"] }
+langhub = "0.5.1"

@@ -1,0 +1,1136 @@
+{
+  "info": {
+    "_postman_id": "b1e0f3a2-0c5e-4c1a-9d6e-7f4c2a8b9e01",
+    "name": "saas-core-service",
+    "description": "Full test collection for soulcut SaaS core service.\n\nBase URL: http://127.0.0.1:8080\n\nCurrent behavior:\n- Register creates t_user_info + t_user_role_relation(tenant_id=0, TENANT_USER)\n- Register does NOT bind the user to any tenant\n- Login returns tenant_id = 0\n- LLM usage / integral / member endpoints are token-based (JWT subject)\n\nRun in order: Register -> Login -> Get -> List -> Count -> Update -> Delete.\nFor the LLM folder, run Register -> Login first so that {{token}} is set.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"code is 0\", function () {",
+                  "    pm.expect(pm.response.json().code).to.eql(0);",
+                  "});",
+                  "pm.test(\"role is TENANT_USER\", function () {",
+                  "    pm.expect(pm.response.json().data.role).to.eql(\"TENANT_USER\");",
+                  "});",
+                  "pm.test(\"no tenant_id in register response\", function () {",
+                  "    pm.expect(pm.response.json().data).to.not.have.property(\"tenant_id\");",
+                  "});",
+                  "var data = pm.response.json().data;",
+                  "if (data && data.id) {",
+                  "    pm.collectionVariables.set(\"user_id\", data.id);",
+                  "    pm.collectionVariables.set(\"username\", data.username);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"alice_{{$timestamp}}\",\n    \"password\": \"123456\",\n    \"nickname\": \"Alice\",\n    \"email\": \"alice_{{$timestamp}}@example.com\",\n    \"phone\": \"13800000001\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/user/register",
+              "host": ["{{base_url}}"],
+              "path": ["user", "register"]
+            },
+            "description": "Register a new user. Username and email are suffixed with a timestamp to avoid 409 on repeat runs."
+          }
+        },
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"code is 0\", function () {",
+                  "    pm.expect(pm.response.json().code).to.eql(0);",
+                  "});",
+                  "pm.test(\"tenant_id is 0\", function () {",
+                  "    pm.expect(pm.response.json().data.tenant_id).to.eql(0);",
+                  "});",
+                  "pm.test(\"role is TENANT_USER\", function () {",
+                  "    pm.expect(pm.response.json().data.role).to.eql(\"TENANT_USER\");",
+                  "});",
+                  "var data = pm.response.json().data;",
+                  "if (data && data.token) {",
+                  "    pm.collectionVariables.set(\"token\", data.token);",
+                  "    pm.collectionVariables.set(\"tenant_id\", data.tenant_id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"123456\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/user/login",
+              "host": ["{{base_url}}"],
+              "path": ["user", "login"]
+            },
+            "description": "Login with the registered user. Uses the username saved by Register. Saves token to collection variables."
+          }
+        },
+        {
+          "name": "Login - wrong password",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});",
+                  "pm.test(\"code is 401\", function () {",
+                  "    pm.expect(pm.response.json().code).to.eql(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"{{username}}\",\n    \"password\": \"wrong-password\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/user/login",
+              "host": ["{{base_url}}"],
+              "path": ["user", "login"]
+            },
+            "description": "Login with a wrong password. Expect 401."
+          }
+        },
+        {
+          "name": "Login - not found",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"nobody-{{$timestamp}}\",\n    \"password\": \"whatever\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/user/login",
+              "host": ["{{base_url}}"],
+              "path": ["user", "login"]
+            },
+            "description": "Login with a nonexistent user. Expect 401."
+          }
+        },
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"bob_{{$timestamp}}\",\n    \"password\": \"123456\",\n    \"nickname\": \"Bob\",\n    \"email\": \"bob_{{$timestamp}}@example.com\",\n    \"phone\": \"13800000002\",\n    \"status\": 1\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/user/create",
+              "host": ["{{base_url}}"],
+              "path": ["user", "create"]
+            },
+            "description": "Create a user directly (admin). Does NOT assign any role."
+          }
+        },
+        {
+          "name": "Get by id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"id matches\", function () {",
+                  "    pm.expect(pm.response.json().data.id).to.eql(Number(pm.collectionVariables.get(\"user_id\")));",
+                  "});",
+                  "pm.test(\"password is bcrypt hash\", function () {",
+                  "    var pwd = pm.response.json().data.password;",
+                  "    pm.expect(pwd).to.match(/^\\$2[aby]\\$/);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/user/get?id={{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["user", "get"],
+              "query": [{ "key": "id", "value": "{{user_id}}" }]
+            },
+            "description": "Get user by id. Verifies that the stored password is a bcrypt hash."
+          }
+        },
+        {
+          "name": "Get by username",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/user/username?username={{username}}",
+              "host": ["{{base_url}}"],
+              "path": ["user", "username"],
+              "query": [{ "key": "username", "value": "{{username}}" }]
+            },
+            "description": "Get user by username."
+          }
+        },
+        {
+          "name": "Get by email",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/user/email?email=alice@example.com",
+              "host": ["{{base_url}}"],
+              "path": ["user", "email"],
+              "query": [{ "key": "email", "value": "alice@example.com" }]
+            },
+            "description": "Get user by email. Change value if using a timestamped email."
+          }
+        },
+        {
+          "name": "Get by phone",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/user/phone?phone=13800000001",
+              "host": ["{{base_url}}"],
+              "path": ["user", "phone"],
+              "query": [{ "key": "phone", "value": "13800000001" }]
+            },
+            "description": "Get user by phone."
+          }
+        },
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/user/list?offset=0&limit=20",
+              "host": ["{{base_url}}"],
+              "path": ["user", "list"],
+              "query": [
+                { "key": "offset", "value": "0" },
+                { "key": "limit", "value": "20" }
+              ]
+            },
+            "description": "List users with pagination."
+          }
+        },
+        {
+          "name": "Count",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"has count field\", function () {",
+                  "    pm.expect(pm.response.json().data).to.have.property(\"count\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/user/count",
+              "host": ["{{base_url}}"],
+              "path": ["user", "count"]
+            },
+            "description": "Count all users."
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"nickname\": \"Alice Updated\",\n    \"status\": 1\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/user/update?id={{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["user", "update"],
+              "query": [{ "key": "id", "value": "{{user_id}}" }]
+            },
+            "description": "Update user by id."
+          }
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/user/delete?id={{user_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["user", "delete"],
+              "query": [{ "key": "id", "value": "{{user_id}}" }]
+            },
+            "description": "Delete user by id. Run LAST."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tenant",
+      "item": [
+        {
+          "name": "Create",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"code is 0\", function () {",
+                  "    pm.expect(pm.response.json().code).to.eql(0);",
+                  "});",
+                  "var data = pm.response.json().data;",
+                  "if (data && data.id) {",
+                  "    pm.collectionVariables.set(\"tenant_id\", data.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Acme Inc\",\n    \"code\": \"acme_{{$timestamp}}\",\n    \"contact\": \"Alice\",\n    \"phone\": \"13800000001\",\n    \"status\": 1,\n    \"plan_id\": 0,\n    \"expire_time\": null\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/tenant/create",
+              "host": ["{{base_url}}"],
+              "path": ["tenant", "create"]
+            },
+            "description": "Create a tenant. Code is timestamped to avoid 409. Note: this is a reserved feature; the current user system does not use it."
+          }
+        },
+        {
+          "name": "Get by id",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"id matches\", function () {",
+                  "    pm.expect(pm.response.json().data.id).to.eql(Number(pm.collectionVariables.get(\"tenant_id\")));",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tenant/get?id={{tenant_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["tenant", "get"],
+              "query": [{ "key": "id", "value": "{{tenant_id}}" }]
+            },
+            "description": "Get tenant by id."
+          }
+        },
+        {
+          "name": "Get by code",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tenant/code?code=acme",
+              "host": ["{{base_url}}"],
+              "path": ["tenant", "code"],
+              "query": [{ "key": "code", "value": "acme" }]
+            },
+            "description": "Get tenant by code."
+          }
+        },
+        {
+          "name": "List",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tenant/list?offset=0&limit=20",
+              "host": ["{{base_url}}"],
+              "path": ["tenant", "list"],
+              "query": [
+                { "key": "offset", "value": "0" },
+                { "key": "limit", "value": "20" }
+              ]
+            },
+            "description": "List tenants with pagination."
+          }
+        },
+        {
+          "name": "Count",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"has count field\", function () {",
+                  "    pm.expect(pm.response.json().data).to.have.property(\"count\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tenant/count",
+              "host": ["{{base_url}}"],
+              "path": ["tenant", "count"]
+            },
+            "description": "Count tenants."
+          }
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Acme Ltd\",\n    \"contact\": \"Bob\",\n    \"status\": 1\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/tenant/update?id={{tenant_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["tenant", "update"],
+              "query": [{ "key": "id", "value": "{{tenant_id}}" }]
+            },
+            "description": "Update tenant by id."
+          }
+        },
+        {
+          "name": "Soft Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tenant/soft_delete?id={{tenant_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["tenant", "soft_delete"],
+              "query": [{ "key": "id", "value": "{{tenant_id}}" }]
+            },
+            "description": "Soft delete tenant by id."
+          }
+        },
+        {
+          "name": "Hard Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tenant/hard_delete?id={{tenant_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["tenant", "hard_delete"],
+              "query": [{ "key": "id", "value": "{{tenant_id}}" }]
+            },
+            "description": "Hard delete tenant by id (use with caution)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "LLM",
+      "item": [
+        {
+          "name": "Create Usage (chat / input)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"code is 0\", function () {",
+                  "    pm.expect(pm.response.json().code).to.eql(0);",
+                  "});",
+                  "var data = pm.response.json().data;",
+                  "if (data && data.id) {",
+                  "    pm.collectionVariables.set(\"usage_id\", data.id);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"tenant_id\": 0,\n    \"kind\": \"chat\",\n    \"provider_code\": \"openai\",\n    \"model_id\": \"gpt-4o\",\n    \"tokens\": 1234,\n    \"usage_type\": \"input\",\n    \"duration_ms\": 850,\n    \"success\": 1,\n    \"request_id\": \"req-{{$timestamp}}-input\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/user/llm/usage",
+              "host": ["{{base_url}}"],
+              "path": ["user", "llm", "usage"]
+            },
+            "description": "Record one chat input usage row for the current user. Requires {{token}} from Login."
+          }
+        },
+        {
+          "name": "Create Usage (chat / output)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"code is 0\", function () {",
+                  "    pm.expect(pm.response.json().code).to.eql(0);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"tenant_id\": 0,\n    \"kind\": \"chat\",\n    \"provider_code\": \"openai\",\n    \"model_id\": \"gpt-4o\",\n    \"tokens\": 456,\n    \"usage_type\": \"output\",\n    \"duration_ms\": 850,\n    \"success\": 1,\n    \"request_id\": \"req-{{$timestamp}}-output\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/user/llm/usage",
+              "host": ["{{base_url}}"],
+              "path": ["user", "llm", "usage"]
+            },
+            "description": "Record one chat output usage row for the current user."
+          }
+        },
+        {
+          "name": "Create Usage (image)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"code is 0\", function () {",
+                  "    pm.expect(pm.response.json().code).to.eql(0);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"tenant_id\": 0,\n    \"kind\": \"image\",\n    \"provider_code\": \"seedream\",\n    \"model_id\": \"doubao-seedream-4-5-251128\",\n    \"tokens\": 12,\n    \"usage_type\": null,\n    \"duration_ms\": 4200,\n    \"success\": 1,\n    \"request_id\": \"req-{{$timestamp}}-img\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/user/llm/usage",
+              "host": ["{{base_url}}"],
+              "path": ["user", "llm", "usage"]
+            },
+            "description": "Record one image generation usage row. usage_type is null for non-chat kinds."
+          }
+        },
+        {
+          "name": "Create Usage (video)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"code is 0\", function () {",
+                  "    pm.expect(pm.response.json().code).to.eql(0);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"tenant_id\": 0,\n    \"kind\": \"video\",\n    \"provider_code\": \"veo\",\n    \"model_id\": \"veo-3.1-generate-preview\",\n    \"tokens\": 8,\n    \"usage_type\": null,\n    \"duration_ms\": 30000,\n    \"success\": 1,\n    \"request_id\": \"req-{{$timestamp}}-vid\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/user/llm/usage",
+              "host": ["{{base_url}}"],
+              "path": ["user", "llm", "usage"]
+            },
+            "description": "Record one video generation usage row."
+          }
+        },
+        {
+          "name": "Create Usage (audio)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"code is 0\", function () {",
+                  "    pm.expect(pm.response.json().code).to.eql(0);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"tenant_id\": 0,\n    \"kind\": \"audio\",\n    \"provider_code\": \"elevenlabs\",\n    \"model_id\": \"eleven-v4\",\n    \"tokens\": 320,\n    \"usage_type\": null,\n    \"duration_ms\": 2100,\n    \"success\": 1,\n    \"request_id\": \"req-{{$timestamp}}-aud\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/user/llm/usage",
+              "host": ["{{base_url}}"],
+              "path": ["user", "llm", "usage"]
+            },
+            "description": "Record one audio generation usage row."
+          }
+        },
+        {
+          "name": "Create Usage - no token (401)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 401\", function () {",
+                  "    pm.response.to.have.status(401);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"tenant_id\": 0,\n    \"kind\": \"chat\",\n    \"provider_code\": \"openai\",\n    \"model_id\": \"gpt-4o\",\n    \"tokens\": 1\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/user/llm/usage",
+              "host": ["{{base_url}}"],
+              "path": ["user", "llm", "usage"]
+            },
+            "description": "Missing token must yield 401."
+          }
+        },
+        {
+          "name": "List Usage",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"data is an array\", function () {",
+                  "    pm.expect(pm.response.json().data).to.be.an(\"array\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/user/llm/usage/list?offset=0&limit=20",
+              "host": ["{{base_url}}"],
+              "path": ["user", "llm", "usage", "list"],
+              "query": [
+                { "key": "offset", "value": "0" },
+                { "key": "limit", "value": "20" }
+              ]
+            },
+            "description": "List the current user's usage records (newest first)."
+          }
+        },
+        {
+          "name": "List Usage by kind",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/user/llm/usage/list?kind=chat&offset=0&limit=20",
+              "host": ["{{base_url}}"],
+              "path": ["user", "llm", "usage", "list"],
+              "query": [
+                { "key": "kind", "value": "chat" },
+                { "key": "offset", "value": "0" },
+                { "key": "limit", "value": "20" }
+              ]
+            },
+            "description": "List the current user's chat usage records."
+          }
+        },
+        {
+          "name": "Count Usage",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"has count field\", function () {",
+                  "    pm.expect(pm.response.json().data).to.have.property(\"count\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/user/llm/usage/count",
+              "host": ["{{base_url}}"],
+              "path": ["user", "llm", "usage", "count"]
+            },
+            "description": "Total number of usage records for the current user."
+          }
+        },
+        {
+          "name": "Sum Usage (chat, all)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"has tokens field\", function () {",
+                  "    pm.expect(pm.response.json().data).to.have.property(\"tokens\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/user/llm/usage/sum?kind=chat",
+              "host": ["{{base_url}}"],
+              "path": ["user", "llm", "usage", "sum"],
+              "query": [{ "key": "kind", "value": "chat" }]
+            },
+            "description": "Sum tokens for chat, both input and output."
+          }
+        },
+        {
+          "name": "Sum Usage (chat, input only)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/user/llm/usage/sum?kind=chat&usage_type=input",
+              "host": ["{{base_url}}"],
+              "path": ["user", "llm", "usage", "sum"],
+              "query": [
+                { "key": "kind", "value": "chat" },
+                { "key": "usage_type", "value": "input" }
+              ]
+            },
+            "description": "Sum tokens for chat, input direction only."
+          }
+        },
+        {
+          "name": "Sum Usage (chat, output only)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/user/llm/usage/sum?kind=chat&usage_type=output",
+              "host": ["{{base_url}}"],
+              "path": ["user", "llm", "usage", "sum"],
+              "query": [
+                { "key": "kind", "value": "chat" },
+                { "key": "usage_type", "value": "output" }
+              ]
+            },
+            "description": "Sum tokens for chat, output direction only."
+          }
+        },
+        {
+          "name": "Usage Summary (all kinds)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"code is 0\", function () {",
+                  "    pm.expect(pm.response.json().code).to.eql(0);",
+                  "});",
+                  "pm.test(\"has usage object\", function () {",
+                  "    pm.expect(pm.response.json().data).to.have.property(\"usage\");",
+                  "});",
+                  "pm.test(\"chat.openai.gpt-4o exists\", function () {",
+                  "    var usage = pm.response.json().data.usage;",
+                  "    pm.expect(usage).to.have.property(\"chat\");",
+                  "    pm.expect(usage.chat).to.have.property(\"openai\");",
+                  "    pm.expect(usage.chat.openai).to.have.property(\"gpt-4o\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/user/llm/usage/summary",
+              "host": ["{{base_url}}"],
+              "path": ["user", "llm", "usage", "summary"]
+            },
+            "description": "Full usage of the current user, nested by kind -> provider -> model -> tokens. Run after the Create Usage requests."
+          }
+        },
+        {
+          "name": "Get Integral",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"code is 0\", function () {",
+                  "    pm.expect(pm.response.json().code).to.eql(0);",
+                  "});",
+                  "pm.test(\"has integral field\", function () {",
+                  "    pm.expect(pm.response.json().data).to.have.property(\"integral\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/user/llm/integral",
+              "host": ["{{base_url}}"],
+              "path": ["user", "llm", "integral"]
+            },
+            "description": "Integral balance of the current user. Returns 0 with exists=false when no top-up has ever happened."
+          }
+        },
+        {
+          "name": "Get Member",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "pm.test(\"status is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "pm.test(\"code is 0\", function () {",
+                  "    pm.expect(pm.response.json().code).to.eql(0);",
+                  "});",
+                  "pm.test(\"has expire_at field\", function () {",
+                  "    pm.expect(pm.response.json().data).to.have.property(\"expire_at\");",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Authorization", "value": "Bearer {{token}}" }],
+            "url": {
+              "raw": "{{base_url}}/user/member",
+              "host": ["{{base_url}}"],
+              "path": ["user", "member"]
+            },
+            "description": "Membership of the current user. Returns expire_at=0 with exists=false when no membership record exists."
+          }
+        }
+      ]
+    },
+    {
+      "name": "LLM Admin (SUPER_ADMIN only)",
+      "item": [
+        {
+          "name": "Add Integral",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Accept either 200 (super admin) or 403 (normal user).",
+                  "pm.test(\"status is 200 or 403\", function () {",
+                  "    pm.expect([200, 403]).to.include(pm.response.code);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"user_id\": {{user_id}},\n    \"amount\": 1000\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/user/llm/integral/add",
+              "host": ["{{base_url}}"],
+              "path": ["user", "llm", "integral", "add"]
+            },
+            "description": "Add points to a user's balance. Requires SUPER_ADMIN; normal users get 403. Run with an admin token to test the success path."
+          }
+        },
+        {
+          "name": "Deduct Integral",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Accept 200 (ok), 403 (not admin) or 409 (insufficient).",
+                  "pm.test(\"status is 200, 403 or 409\", function () {",
+                  "    pm.expect([200, 403, 409]).to.include(pm.response.code);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"user_id\": {{user_id}},\n    \"amount\": 100\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/user/llm/integral/deduct",
+              "host": ["{{base_url}}"],
+              "path": ["user", "llm", "integral", "deduct"]
+            },
+            "description": "Deduct points from a user's balance. Requires SUPER_ADMIN. 409 when the balance is insufficient."
+          }
+        },
+        {
+          "name": "Set Member Expire At",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Accept 200 (super admin) or 403 (normal user).",
+                  "pm.test(\"status is 200 or 403\", function () {",
+                  "    pm.expect([200, 403]).to.include(pm.response.code);",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token}}" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"user_id\": {{user_id}},\n    \"expire_at\": 4102444800\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "{{base_url}}/user/member/set",
+              "host": ["{{base_url}}"],
+              "path": ["user", "member", "set"]
+            },
+            "description": "Set a user's membership expiry (UNIX seconds). Requires SUPER_ADMIN; normal users get 403."
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8080",
+      "type": "string"
+    },
+    {
+      "key": "user_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "username",
+      "value": "alice",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "tenant_id",
+      "value": "0",
+      "type": "string"
+    },
+    {
+      "key": "usage_id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

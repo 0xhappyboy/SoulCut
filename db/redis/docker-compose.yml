@@ -1,0 +1,29 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: soulcut-redis
+    restart: unless-stopped
+    environment:
+      TZ: Asia/Shanghai
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data:/data
+      - ./init:/init:ro
+    command: redis-server --appendonly yes --requirepass root123456
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "root123456", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis-init:
+    image: redis:7-alpine
+    container_name: soulcut-redis-init
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - ./init:/init:ro
+    entrypoint: ["/bin/sh", "/init/init.sh"]
+    restart: "no"

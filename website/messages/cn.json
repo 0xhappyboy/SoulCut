@@ -1,0 +1,84 @@
+{
+  "SiteName": {
+    "name": "剪灵"
+  },
+  "Navigation": {
+    "home": "首页",
+    "docs": "文档",
+    "blog": "博客",
+    "github": "GitHub"
+  },
+  "HomePage": {
+    "hero": "剪灵",
+    "tagline": "AI 驱动的智能工作台 · 通过对话完成视频编辑、3D创作、代码开发与数据分析",
+    "cta": "立即体验",
+    "docs": "查看文档",
+    "features": [
+      "🎬 AI 视频编辑",
+      "🧊 3D 场景生成",
+      "🗺️ 智能地图分析",
+      "📊 金融数据看板",
+      "💻 AI 代码助手",
+      "⏰ 智能任务调度"
+    ],
+    "skillsTitle": "核心能力",
+    "skills": [
+      "视频剪辑与特效",
+      "3D 场景构建",
+      "地理位置可视化",
+      "实时金融数据",
+      "代码生成与重构",
+      "定时任务自动化"
+    ],
+    "statsTitle": "发展数据",
+    "projectsTitle": "生态与扩展",
+    "loadMore": "查看更多",
+    "navFeatures": "功能介绍",
+    "navEcosystem": "生态项目",
+    "dropdownFeatures": ["AI 驱动的工作台", "多领域专业工具", "技能编排与扩展"],
+    "dropdownEcosystem": [
+      "技能市场 (Skills)",
+      "插件系统 (Plugins)",
+      "第三方集成"
+    ],
+    "coreFeatures": [
+      {
+        "icon": "🎬",
+        "title": "AI 视频编辑",
+        "desc": "通过对话完成剪辑、添加特效与字幕"
+      },
+      {
+        "icon": "🧊",
+        "title": "3D 沙盒创作",
+        "desc": "AI 生成 Three.js 场景并实时预览"
+      },
+      {
+        "icon": "🗺️",
+        "title": "智能地图分析",
+        "desc": "可视化数据、路线与地理信息"
+      },
+      {
+        "icon": "📊",
+        "title": "金融数据看板",
+        "desc": "实时行情、技术分析与图表绘制"
+      },
+      {
+        "icon": "💻",
+        "title": "AI 代码助手",
+        "desc": "代码生成、重构与 Diff 确认"
+      },
+      {
+        "icon": "⏰",
+        "title": "智能任务调度",
+        "desc": "自然语言创建定时任务与工作流"
+      }
+    ]
+  },
+  "Header": {
+    "docs": "文档",
+    "github": "GitHub",
+    "aiRuntime": "剪灵",
+    "languageLabel": "中文",
+    "languageEn": "EN"
+  }
+}

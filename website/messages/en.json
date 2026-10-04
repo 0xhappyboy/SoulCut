@@ -1,0 +1,88 @@
+{
+  "SiteName": {
+    "name": "SoulCut"
+  },
+  "Navigation": {
+    "home": "Home",
+    "docs": "Docs",
+    "blog": "Blog",
+    "github": "GitHub"
+  },
+  "HomePage": {
+    "hero": "SoulCut",
+    "tagline": "An AI-powered intelligent workbench — edit videos, build 3D scenes, develop code, and analyze data through conversation.",
+    "cta": "Get Started",
+    "docs": "Read Docs",
+    "features": [
+      "🎬 AI Video Editing",
+      "🧊 3D Scene Generation",
+      "🗺️ Smart Map Analytics",
+      "📊 Financial Dashboard",
+      "💻 AI Code Assistant",
+      "⏰ Intelligent Task Scheduler"
+    ],
+    "skillsTitle": "Core Capabilities",
+    "skills": [
+      "Video Editing & Effects",
+      "3D Scene Construction",
+      "Geospatial Visualization",
+      "Real-time Market Data",
+      "Code Generation & Refactoring",
+      "Automated Scheduled Tasks"
+    ],
+    "statsTitle": "Growth & Metrics",
+    "projectsTitle": "Ecosystem & Extensions",
+    "loadMore": "Load More",
+    "navFeatures": "Features",
+    "navEcosystem": "Ecosystem",
+    "dropdownFeatures": [
+      "AI-Driven Workbench",
+      "Multi-Domain Tools",
+      "Skill Orchestration"
+    ],
+    "dropdownEcosystem": [
+      "Skill Marketplace",
+      "Plugin System",
+      "Third-party Integrations"
+    ],
+    "coreFeatures": [
+      {
+        "icon": "🎬",
+        "title": "AI Video Editing",
+        "desc": "Edit, add effects and subtitles via chat"
+      },
+      {
+        "icon": "🧊",
+        "title": "3D Sandbox Creation",
+        "desc": "AI-generate Three.js scenes with live preview"
+      },
+      {
+        "icon": "🗺️",
+        "title": "Smart Map Analytics",
+        "desc": "Visualize data, routes and geospatial info"
+      },
+      {
+        "icon": "📊",
+        "title": "Financial Dashboard",
+        "desc": "Live quotes, technical analysis and charting"
+      },
+      {
+        "icon": "💻",
+        "title": "AI Code Assistant",
+        "desc": "Code generation, refactoring with diff review"
+      },
+      {
+        "icon": "⏰",
+        "title": "Intelligent Task Scheduler",
+        "desc": "Create scheduled tasks and workflows in natural language"
+      }
+    ]
+  },
+  "Header": {
+    "docs": "Docs",
+    "github": "GitHub",
+    "aiRuntime": "SoulCut",
+    "languageLabel": "EN",
+    "languageEn": "EN"
+  }
+}
