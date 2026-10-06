@@ -61,7 +61,7 @@
 
 ### 多轨道编辑,多机位渲染
 
-<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/multi-track -editing.gif" />
+<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/multi-track-editing.gif" />
 
 ### 滤镜与特效
 

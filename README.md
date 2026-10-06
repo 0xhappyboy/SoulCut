@@ -61,7 +61,7 @@ Get the latest version from the [Releases page](https://github.com/0xhappyboy/So
 
 ### Multi-Track Editing
 
-<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/multi-track -editing.gif" />
+<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/multi-track-editing.gif" />
 
 ### Filters & Effects
 
