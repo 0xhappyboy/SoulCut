@@ -55,21 +55,25 @@
 
 ## 🖼️ 演示
 
+### LLM 对时间线的控制
+
+<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/llm_alignment_track_blocks.gif" />
+
 ### 多轨道编辑,多机位渲染
 
-https://github.com/user-attachments/assets/f7cb9dc8-9528-4a11-b910-bd9ca6c7f340
+<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/multi-track -editing.gif" />
 
 ### 滤镜与特效
 
-https://github.com/user-attachments/assets/cc9df193-5af6-4167-bc2f-69e3ec4a6735
+<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/filters-effects.gif" />
 
 ### 转场特效
 
-https://github.com/user-attachments/assets/6e6571d1-fdd3-465c-b7f3-5db31e72f4d2
+<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/transitions.gif" />
 
 ### 运镜效果
 
-https://github.com/user-attachments/assets/52fdca4b-77e8-4eb3-88f6-8170ad4f9674
+<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/camera-motion.gif" />
 
 ## 🏛️ 生态与组织关系
 

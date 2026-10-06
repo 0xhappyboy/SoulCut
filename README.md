@@ -61,19 +61,19 @@ Get the latest version from the [Releases page](https://github.com/0xhappyboy/So
 
 ### Multi-Track Editing
 
-https://github.com/user-attachments/assets/f7cb9dc8-9528-4a11-b910-bd9ca6c7f340
+<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/multi-track -editing.gif" />
 
 ### Filters & Effects
 
-https://github.com/user-attachments/assets/cc9df193-5af6-4167-bc2f-69e3ec4a6735
+<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/filters-effects.gif" />
 
 ### Transitions
 
-https://github.com/user-attachments/assets/6e6571d1-fdd3-465c-b7f3-5db31e72f4d2
+<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/transitions.gif" />
 
 ### Camera Motion
 
-https://github.com/user-attachments/assets/52fdca4b-77e8-4eb3-88f6-8170ad4f9674
+<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/camera-motion.gif" />
 
 ## 🏛️ Ecosystem & Organization
 
