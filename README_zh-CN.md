@@ -55,6 +55,10 @@
 
 ## 🖼️ 演示
 
+### AI多媒体文件生成能力.
+
+<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/llm-media-generation.gif" />
+
 ### LLM 对时间线的控制
 
 <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/llm_alignment_track_blocks.gif" />

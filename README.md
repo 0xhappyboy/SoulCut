@@ -55,6 +55,10 @@ Get the latest version from the [Releases page](https://github.com/0xhappyboy/So
 
 ## 🖼️ Demo
 
+### LLM media file generation capabilities.
+
+<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/llm-media-generation.gif" />
+
 ### LLM Control of Timelines
 
 <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/llm_alignment_track_blocks.gif" />
