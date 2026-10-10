@@ -33,15 +33,34 @@
 <a href="./README_zh-CN.md">简体中文</a> | <a href="./README.md">English</a>
 </p>
 
----
+## Why SoulCut
+
+Most existing video editing tools are built on architectures from over a decade ago. C++ NLE kernels are performant, but memory safety is maintained through careful coding rather than language guarantees, and every new capability is constrained by legacy baggage. The alternative path is cloud-first — feature-rich, but your assets, your projects, and your creative process all default to passing through someone else's servers. Go offline, and work stops.
+
+SoulCut takes a different path.
+
+The underlying NLE engine is rewritten from scratch in Rust — not patched onto an old architecture, but rebuilt so memory safety is enforced at the language level. That means fewer crashes, more stable long editing sessions, and an architecture that can keep stacking new capabilities, instead of bypassing three legacy issues for every new feature.
+
+SoulCut is also **offline-first**. Assets stay local, projects stay local, editing stays local. Without a network connection, you can still go from import to export. AI is a layer on top of the local engine, not a dependency that binds the entire workflow to the cloud.
+
+What SoulCut wants to validate is simple: **if interaction shifts from "learning how the tool works" to "describing what you want to accomplish," does editing become different?**
+
+So its core is not "AI edits for you." It lets you describe editing intent in natural language, with the LLM processing selected clips and aligning rhythm across all clips. It is also a complete multi-track timeline editor, retaining the ability to fine-tune manually.
+
+## What SoulCut Is
+
+A free, locally-running desktop non-linear audio/video editor, supporting Windows / macOS / Linux.
+
+SoulCut's underlying engine is a **fully self-developed NLE (non-linear editing) engine**. This means that even without any AI features, you can manually complete multi-track arrangement, trimming, transitions, color grading, audio processing, and export — just like in traditional editing software. AI is an interaction layer on top of this engine, not a replacement.
 
 ## ✨ Features
 
-- 🎬 **Conversational Editing** — Describe your intent in natural language and let AI handle rough cuts, fine cuts, and rhythm alignment.
-- 🧠 **SoulCut Engine** — Intelligent editing engine supporting ReAct / Batch / Chain / PlanAndExecute workflows.
-- 🎞️ **Multi-Track Timeline** — Multi-track editing with real-time preview and precise time alignment.
+- 🎬 **Conversational Editing** — Describe your intent in natural language. The LLM processes selected clips and aligns rhythm across all clips.
+- 🖐️ **Full Manual Editing** — Self-developed NLE engine. Complete every editing step manually without relying on AI.
+- 🎞️ **Multi-Track Timeline** — Multi-track editing with real-time preview, multi-camera rendering, and precise time alignment.
+- 🌀 **Linear Animation** — Three linear animation modes: anchor, time, and keyword. For camera motion, transitions, and asset movement control.
+- 🧩 **Multimodal Asset Generation** — Generate video, audio, and images directly into the timeline. No cross-tool import/export.
 - 🎨 **Filters · Effects · Camera Motion · Transitions** — 15 filters, 78 visual effects, 15 camera motions, 26 transitions.
-- 🔊 **Audio Processing** — Noise reduction, music recommendation, beat-synced editing, and auto volume balancing.
 - 📤 **One-Click Export** — Multiple resolutions and platform presets for fast delivery.
 
 ## 📥 Download
