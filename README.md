@@ -25,8 +25,15 @@
        alt="SoulCut | AlternativeTo"
        style="width:200px;height:54px;"
        width="200" height="54"
-       style="width: 244px; height: 79px;" />
+       style="width: 200px; height: 54px;" 
+       />
     </a>
+    <a href="https://www.founder.best?ref=founderbest&utm_source=founder.best&utm_medium=referral" target="_blank" rel="noopener noreferrer"><img 
+    alt="SoulCut | Funder.best"
+       style="width:200px;height:54px;"
+       width="200" height="54"
+       style="width: 200px; height: 54px;" 
+    src="https://www.founder.best/api/badge/featured/soulcut" alt="SoulCut - Featured on Founder.best" width="1195" height="390" loading="lazy" decoding="async" /></a>
 </p>
 
 <p align="center">
