@@ -83,9 +83,40 @@
 
 ## 🖼️ 演示
 
+### 录屏
+
+<table align="center" width="100%">
+  <tr>
+    <td align="center" width="50%">
+      <b>全屏录屏</b><br/>
+      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/Rec_Screen_Demo.gif" alt="全屏录屏" />
+    </td>
+    <td align="center" width="50%">
+      <b>窗口录屏</b><br/>
+      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/Rec_Windows_Demo.gif" alt="窗口录屏" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <b>截取录屏</b><br/>
+      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/Rec_Region_Demo.gif" alt="截取录屏" />
+    </td>
+    <td align="center" width="50%">
+      <b>跟随鼠标录屏</b><br/>
+      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/Rec_Mouse_Demo.gif" alt="跟随鼠标录屏" />
+    </td>
+  </tr>
+</table>
+
 ### AI多媒体文件生成能力.
 
 <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/llm-media-generation.gif" />
+
+### 绘图画板
+
+用户可直接在播放器上用画笔手绘图，笔迹作为叠加层记录在时间线上，可与视频内容实时合成。
+
+<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/Drawing_Demo.gif" alt="绘图画板" />
 
 ### LLM 对时间线的控制
 

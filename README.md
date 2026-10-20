@@ -84,9 +84,40 @@ Get the latest version from the [Releases page](https://github.com/0xhappyboy/So
 
 ## 🖼️ Demo
 
+### Screen Recording
+
+<table align="center" width="100%">
+  <tr>
+    <td align="center" width="50%">
+      <b>Full Screen Recording</b><br/>
+      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/Rec_Screen_Demo.gif" alt="Full Screen Recording" />
+    </td>
+    <td align="center" width="50%">
+      <b>Window Recording</b><br/>
+      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/Rec_Windows_Demo.gif" alt="Window Recording" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <b>Region Recording</b><br/>
+      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/Rec_Region_Demo.gif" alt="Region Recording" />
+    </td>
+    <td align="center" width="50%">
+      <b>Follow-Mouse Recording</b><br/>
+      <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/Rec_Mouse_Demo.gif" alt="Follow-Mouse Recording" />
+    </td>
+  </tr>
+</table>
+
 ### LLM media file generation capabilities.
 
 <img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/llm-media-generation.gif" />
+
+### Drawing Canvas
+
+Hand-draw directly on the player with a brush; strokes are captured as an overlay layer and composited with video in real time.
+
+<img src="https://raw.githubusercontent.com/0xhappyboy/SoulCut/main/assets/demo/Drawing_Demo.gif" alt="Drawing Canvas" />
 
 ### LLM Control of Timelines
 
