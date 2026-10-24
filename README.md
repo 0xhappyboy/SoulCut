@@ -28,7 +28,7 @@
        style="width: 200px; height: 54px;" 
        />
     </a>
-    <a href="https://www.founder.best?ref=founderbest&utm_source=founder.best&utm_medium=referral" target="_blank" rel="noopener noreferrer"><img 
+    <a href="https://www.founder.best/products/soulcut" target="_blank" rel="noopener noreferrer"><img 
     alt="SoulCut | Funder.best"
        style="width:200px;height:54px;"
        width="200" height="54"
